@@ -129,5 +129,37 @@
     });
 
 
+Work
+
+
+<div class="collection-cart">
+  {% for variant in product.variants %}
+  <input type="hidden" id="variantgetid" value="{{ variant.id }}">
+  {% endfor %}
+<button class="cstm-add-cart">Add to cart</button>
+</div>
+<script>
+  $(document).on("click", ".cstm-add-cart", function() {
+var getid = $(this).parents('.collection-cart').find('#variantgetid').val();
+alert(getid);   
+     $.ajax({ 
+          type: 'POST',
+           url: '/cart/add.js',
+          data: {
+         quantity:1,
+       id: getid
+          },
+        dataType: 'json',
+      success: function() {
+ alert('Added to cart');
+        
+     }
+     });
+  });
+  
+   
+
+</script>
+
     
     
